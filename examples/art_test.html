@@ -121,7 +121,7 @@
 					object.castShadow = true;
 					object.receiveShadow = true;
 
-					group.add( object );
+					// group.add( object );
 
 				}
 
@@ -142,8 +142,8 @@
 
 						const loader = new GLTFLoader().setPath( 'models/gltf/DamagedHelmet/glTF/' );
 						loader.load( 'DamagedHelmet.gltf', function ( gltf ) {
-							gltf.scene.scale.set(0.1, 0.1, 0.1);
-							scene.add( gltf.scene );
+							const gltf_obj = gltf.scene.scale.set(0.1, 0.1, 0.1);
+							scene.add( gltf_obj );
 							render();
 
 						} );
@@ -202,12 +202,9 @@
 			}
 
 			function onWindowResize() {
-
 				camera.aspect = window.innerWidth / window.innerHeight;
 				camera.updateProjectionMatrix();
-
 				renderer.setSize( window.innerWidth, window.innerHeight );
-
 			}
 
 			function onSelectStart( event ) {
