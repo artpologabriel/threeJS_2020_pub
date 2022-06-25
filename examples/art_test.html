@@ -148,7 +148,7 @@
 
 						const loader = new GLTFLoader().setPath( 'models/gltf/DamagedHelmet/glTF/' );
 						loader.load( 'DamagedHelmet.gltf', function ( gltf ) {
-							const gltf_obj = gltf.scene.scale.set(0.1, 0.1, 0.1);
+							const gltf_obj = gltf.scene.scale.set(0.5, 0.5, 0.5);
 							scene.add( gltf_obj );
 							render();
 
@@ -301,12 +301,13 @@
 
 			function animate() {
 				renderer.setAnimationLoop( render );
-				cube.rotation.x += 0.01;
-				cube.rotation.y += 0.01;
+				
 
 			}
 
 			function render() {
+				cube.rotation.x += 0.01;
+				cube.rotation.y += 0.01;
 				cleanIntersected();
 				intersectObjects( controller1 );
 				intersectObjects( controller2 );
