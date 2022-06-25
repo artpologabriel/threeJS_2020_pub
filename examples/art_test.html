@@ -97,7 +97,7 @@
 					new THREE.TorusGeometry( 0.2, 0.04, 64, 32 )
 				];
 
-				for ( let i = 0; i < 50; i ++ ) {
+				for ( let i = 0; i < 5; i ++ ) {
 
 					const geometry = geometries[ Math.floor( Math.random() * geometries.length ) ];
 					const material = new THREE.MeshStandardMaterial( {
@@ -128,8 +128,8 @@
 				//
 				const geometryCube = new THREE.BoxGeometry( 1, 1, 1 );
 			const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-			const cube = new THREE.Mesh( geometryCube, material );
-			scene.add( cube );
+			const object = new THREE.Mesh( geometryCube, material );
+			scene.add( object );
 
 			
 
@@ -291,10 +291,8 @@
 			function cleanIntersected() {
 
 				while ( intersected.length ) {
-
 					const object = intersected.pop();
 					object.material.emissive.r = 0;
-
 				}
 
 			}
@@ -302,7 +300,6 @@
 			//
 
 			function animate() {
-
 				renderer.setAnimationLoop( render );
 				cube.rotation.x += 0.01;
 				cube.rotation.y += 0.01;
@@ -310,14 +307,10 @@
 			}
 
 			function render() {
-
 				cleanIntersected();
-
 				intersectObjects( controller1 );
 				intersectObjects( controller2 );
-
 				renderer.render( scene, camera );
-
 			}
 
 		</script>
