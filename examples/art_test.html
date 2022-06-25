@@ -142,9 +142,8 @@
 
 						const loader = new GLTFLoader().setPath( 'models/gltf/DamagedHelmet/glTF/' );
 						loader.load( 'DamagedHelmet.gltf', function ( gltf ) {
-
+							gltf.scene.scale.set(0.1, 0.1, 0.1);
 							scene.add( gltf.scene );
-
 							render();
 
 						} );
