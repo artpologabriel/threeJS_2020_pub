@@ -150,7 +150,8 @@
 						loader.load( 'DamagedHelmet.gltf', function ( gltf ) {
 							const gltf_obj = gltf.scene.scale.set(0.5, 0.5, 0.5);
 							//scene.add( gltf_obj );
-							group.add (gltf.scene);
+							scene.add(gltf.scene);
+							//group.add (gltf.scene);
 							render();
 
 						} );
