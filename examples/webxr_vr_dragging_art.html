@@ -130,7 +130,6 @@
 				new RGBELoader()
 					.setPath( 'textures/equirectangular/' )
 					.load( 'royal_esplanade_1k.hdr', function ( texture ) {
-
 						texture.mapping = THREE.EquirectangularReflectionMapping;
 
 						scene.background = texture;
@@ -143,7 +142,10 @@
 						const loader = new GLTFLoader().setPath( 'models/gltf/DamagedHelmet/glTF/' );
 						loader.load( 'DamagedHelmet.gltf', function ( gltf ) {
 
-							scene.add( gltf.scene );
+							//scene.add( gltf.scene );
+
+							gltf.scene.scale.set(0.1, 0.1, 0.1);         					
+							group.add( gltf.scene );
 
 							render();
 
@@ -308,10 +310,8 @@
 			function render() {
 
 				cleanIntersected();
-
 				intersectObjects( controller1 );
 				intersectObjects( controller2 );
-
 				renderer.render( scene, camera );
 
 			}
