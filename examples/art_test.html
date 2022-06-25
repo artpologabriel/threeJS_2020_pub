@@ -85,6 +85,15 @@
 				light.shadow.camera.left = - 2;
 				light.shadow.mapSize.set( 4096, 4096 );
 				scene.add( light );
+				
+
+				const addCube = () => {
+					const geometryCube = new THREE.BoxGeometry( .5, .5, .5 );
+					const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+					const object = new THREE.Mesh( geometryCube, material );
+					return object;
+				}
+				
 
 				group = new THREE.Group();
 				scene.add( group );
@@ -120,18 +129,15 @@
 
 					object.castShadow = true;
 					object.receiveShadow = true;
-
+					const cube = addCube();
+					pivotPoint = new THREE.Object3D();
+					pivotPoint.add (cube);
+					object.add(pivotPoint)
 					 group.add( object );
 
 				}
 
-				const addCube = () => {
-					const geometryCube = new THREE.BoxGeometry( .5, .5, .5 );
-					const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-					const object = new THREE.Mesh( geometryCube, material );
-					group.add(object);
-				}
-				addCube();
+				
 
 
 			
