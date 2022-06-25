@@ -125,11 +125,14 @@
 
 				}
 
-				//
-			const geometryCube = new THREE.BoxGeometry( .5, .5, .5 );
-			const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-			const cube = new THREE.Mesh( geometryCube, material );
-			object.add(cube );
+				const addCube = () => {
+					const geometryCube = new THREE.BoxGeometry( .5, .5, .5 );
+					const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+					const object = new THREE.Mesh( geometryCube, material );
+					group.add(object);
+				}
+				addCube();
+
 
 			
 
@@ -151,8 +154,8 @@
 							const gltf_obj = gltf.scene.scale.set(0.5, 0.5, 0.5);
 							//scene.add( gltf_obj );
 							//scene.add(gltf.scene);
-							object.add(gltf.scene);
-							//group.add (gltf.scene);
+							//scene.add(gltf.scene);
+							group.add (gltf.scene);
 							render();
 
 						} );
