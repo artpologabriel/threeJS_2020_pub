@@ -151,11 +151,11 @@
 
 						const loader = new GLTFLoader().setPath( 'models/gltf/DamagedHelmet/glTF/' );
 						loader.load( 'DamagedHelmet.gltf', function ( gltf ) {
-							const object = gltf.scene.scale.set(0.5, 0.5, 0.5);
+							const gltf_obj = gltf.scene.scale.set(0.5, 0.5, 0.5);
 							//scene.add( gltf_obj );
 							//scene.add(gltf.scene);
 							//scene.add(gltf.scene);
-							group.add (object);
+							group.add (gltf_obj);
 							render();
 
 						} );
