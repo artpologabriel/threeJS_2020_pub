@@ -32,7 +32,7 @@
 			import { XRControllerModelFactory } from './jsm/webxr/XRControllerModelFactory.js';
 			import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
 			import { RGBELoader } from './jsm/loaders/RGBELoader.js';
-
+			
 			let container;
 			let camera, scene, renderer;
 			let controller1, controller2;
@@ -88,8 +88,26 @@
 
 				group = new THREE.Group();
 				scene.add( group );
+				
+				const geometry2 = new THREE.BoxGeometry( 1, 1, 1 );
+				const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+				const cube = new THREE.Mesh( geometry, material );
+				group.add( cube );
 
-			const gltf_obj = new RGBELoader()
+
+				const loader = new GLTFLoader();
+
+				loader.load( 'models/gltf/ferrari.glb', function ( gltf ) {
+
+					scene.add( gltf.scene );
+
+				}, undefined, function ( error ) {
+
+					console.error( error );
+
+				} );
+
+			new RGBELoader()
 					.setPath( 'textures/equirectangular/' )
 					.load( 'royal_esplanade_1k.hdr', function ( texture ) {
 						texture.mapping = THREE.EquirectangularReflectionMapping;
@@ -126,7 +144,7 @@
 					new THREE.TorusGeometry( 0.2, 0.04, 64, 32 )
 				];
 
-				for ( let i = 0; i < 50; i ++ ) {
+				for ( let i = 0; i < 1; i ++ ) {
 
 					const geometry = geometries[ Math.floor( Math.random() * geometries.length ) ];
 					const material = new THREE.MeshStandardMaterial( {
