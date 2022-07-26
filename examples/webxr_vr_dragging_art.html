@@ -43,7 +43,7 @@
 			const intersected = [];
 			const tempMatrix = new THREE.Matrix4();
 
-			let controls, group;
+			let controls, group, gltf_obj;
 
 			init();
 			animate();
@@ -109,7 +109,8 @@
 							gltf.scene.scale.set(0.1, 0.1, 0.1);         					
 							//const root = gltf.scene;
 							//group.add( root );
-							scene.add( gltf.scene );
+							gltf_obj.add(gltf.scene)
+							scene.add( gltf_obj);
 
 							render();
 
@@ -150,7 +151,7 @@
 					object.castShadow = true;
 					object.receiveShadow = true;
 					
-					console.log (object.name)
+					
 					group.add( object );
 
 				}
