@@ -89,7 +89,7 @@
 				group = new THREE.Group();
 				scene.add( group );
 
-				new RGBELoader()
+			const gltf_obj = new RGBELoader()
 					.setPath( 'textures/equirectangular/' )
 					.load( 'royal_esplanade_1k.hdr', function ( texture ) {
 						texture.mapping = THREE.EquirectangularReflectionMapping;
@@ -105,12 +105,11 @@
 						loader.load( 'DamagedHelmet.gltf', function ( gltf ) {
 
 							
-
 							gltf.scene.scale.set(0.1, 0.1, 0.1);         					
 							//const root = gltf.scene;
 							//group.add( root );
-							gltf_obj.add(gltf.scene)
-							scene.add( gltf_obj);
+							//gltf_obj.add(gltf.scene)
+							scene.add( gltf.scene);
 
 							render();
 
