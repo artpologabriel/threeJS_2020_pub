@@ -43,7 +43,7 @@
 			const intersected = [];
 			const tempMatrix = new THREE.Matrix4();
 
-			let controls, group;
+			let controls, group, gltf_object;
 
 			init();
 			animate();
@@ -89,45 +89,6 @@
 				group = new THREE.Group();
 				scene.add( group );
 
-				const geometries = [
-					new THREE.BoxGeometry( 0.2, 0.2, 0.2 ),
-					new THREE.ConeGeometry( 0.2, 0.2, 64 ),
-					new THREE.CylinderGeometry( 0.2, 0.2, 0.2, 64 ),
-					new THREE.IcosahedronGeometry( 0.2, 8 ),
-					new THREE.TorusGeometry( 0.2, 0.04, 64, 32 )
-				];
-
-				for ( let i = 0; i < 10; i ++ ) {
-
-					const geometry = geometries[ Math.floor( Math.random() * geometries.length ) ];
-					const material = new THREE.MeshStandardMaterial( {
-						color: Math.random() * 0xffffff,
-						roughness: 0.7,
-						metalness: 0.0
-					} );
-
-					const object = new THREE.Mesh( geometry, material );
-
-					object.position.x = Math.random() * 4 - 2;
-					object.position.y = Math.random() * 2;
-					object.position.z = Math.random() * 4 - 2;
-
-					object.rotation.x = Math.random() * 2 * Math.PI;
-					object.rotation.y = Math.random() * 2 * Math.PI;
-					object.rotation.z = Math.random() * 2 * Math.PI;
-
-					object.scale.setScalar( Math.random() + 0.5 );
-
-					object.castShadow = true;
-					object.receiveShadow = true;
-					
-					console.log (object)
-					group.add( object );
-
-				}
-
-				//
-
 				new RGBELoader()
 					.setPath( 'textures/equirectangular/' )
 					.load( 'royal_esplanade_1k.hdr', function ( texture ) {
@@ -142,13 +103,14 @@
 
 						const loader = new GLTFLoader().setPath( 'models/gltf/DamagedHelmet/glTF/' );
 						loader.load( 'DamagedHelmet.gltf', function ( gltf ) {
-
 							
 
 							//gltf.scene.scale.set(0.1, 0.1, 0.1);         					
 							//const root = gltf.scene;
 							//group.add( root );
-							scene.add( gltf.scene );
+							//scene.add( gltf.scene );
+
+							gltf_object.add(gltf.scene)
 
 							render();
 
@@ -156,6 +118,50 @@
 
 					} );
 
+				const geometries = [
+					new THREE.BoxGeometry( 0.2, 0.2, 0.2 ),
+					new THREE.ConeGeometry( 0.2, 0.2, 64 ),
+					new THREE.CylinderGeometry( 0.2, 0.2, 0.2, 64 ),
+					new THREE.IcosahedronGeometry( 0.2, 8 ),
+					new THREE.TorusGeometry( 0.2, 0.04, 64, 32 )
+				];
+
+				for ( let i = 0; i < 5; i ++ ) {
+
+					const geometry = geometries[ Math.floor( Math.random() * geometries.length ) ];
+					const material = new THREE.MeshStandardMaterial( {
+						color: Math.random() * 0xffffff,
+						roughness: 0.7,
+						metalness: 0.0
+					} );
+
+					const object = new THREE.Mesh( geometry, material );
+					const object2 = gltf_object;
+
+					object.position.x = Math.random() * 4 - 2;
+					object.position.y = Math.random() * 2;
+					object.position.z = Math.random() * 4 - 2;
+
+					object2.position.x = Math.random() * 4 - 2;
+					object2.position.y = Math.random() * 2;
+					object2.position.z = Math.random() * 4 - 2;
+
+					object.rotation.x = Math.random() * 2 * Math.PI;
+					object.rotation.y = Math.random() * 2 * Math.PI;
+					object.rotation.z = Math.random() * 2 * Math.PI;
+
+					object.scale.setScalar( Math.random() + 0.5 );
+
+					object.castShadow = true;
+					object.receiveShadow = true;
+					
+					console.log (object)
+					group.add( object );
+					group.add( object2 );
+
+				}
+
+				
 				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
